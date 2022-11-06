@@ -1,9 +1,8 @@
 import * as yup from "yup";
 import {
+  INVENTORY_STATUS,
   LISTING_OPTIONS,
   PACKAGING_OPTIONS,
-  INVENTORY_STATUS,
-  STATUS,
   Type,
 } from "../constants/inventory";
 
@@ -121,34 +120,3 @@ export const create = yup
     }),
   })
   .required();
-
-export const update = yup
-  .object({
-    name: yup.string().required("Required").min(2),
-    manufacturer: yup.string().when("listed", {
-      is: true,
-      then: yup.string().required("Required").min(3),
-      otherwise: yup.string(),
-    }),
-    description: yup.string().when("listed", {
-      is: true,
-      then: yup.string().required("Required").min(10),
-      otherwise: yup.string(),
-    }),
-    composition: yup.string().when("listed", {
-      is: true,
-      then: yup.string().required("Required").min(10),
-      otherwise: yup.string(),
-    }),
-    partnerId: yup.string().uuid().required("Required"),
-    type: yup.mixed().oneOf(Object.values(Type)).required(),
-    packaging: yup.mixed().oneOf(Object.values(PACKAGING_OPTIONS)).required(),
-    status: yup.mixed().oneOf(Object.values(INVENTORY_STATUS)).required(),
-    listed: yup.boolean().required(),
-  })
-  .required();
-
-export default {
-  create,
-  update,
-};

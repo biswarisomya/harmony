@@ -9,3 +9,12 @@ export interface Paranoid {
     createdAt ?: Date;
     updatedAt ?: Date;
 }
+
+export enum  ROUTES {
+    PARTNER="partner",
+    INVENTORY="inventory",
+    USERS="users",
+    ORDERS="orders",
+    PRODUCTS= "products",
+    MARKETPLACE= "marketplace",
+};

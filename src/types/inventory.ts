@@ -1,10 +1,11 @@
 import { Type } from "../constants/inventory";
 import { Id, Paranoid } from "./common";
+import { IPartner } from "./partner";
 
 type TypeKeys = keyof typeof Type;
 type TypeValues = typeof Type[TypeKeys];
-export interface InventoryInputFormInput {
-  name: string | null;
+export interface IInventoryInputFormInput {
+  name: string;
   manufacturer: string;
   description: string;
   packaging: string;
@@ -30,7 +31,20 @@ export interface InventoryInputFormInput {
   listing: string;
 }
 
-export interface Inventory extends Id, Paranoid {
+export interface IInventoryUpdateFormInput extends Id {
+  name: string;
+  manufacturer: string;
+  description: string;
+  packaging: string;
+  type: TypeValues;
+  purchasePricePerPack: number;
+  composition: string;
+  partnerId: string;
+  status: string;
+  listed: boolean;
+}
+
+export interface IInventory extends Id, Paranoid {
   packaging: string;
   composition: string;
   name: string;
@@ -41,4 +55,10 @@ export interface Inventory extends Id, Paranoid {
   partnerId: string;
   marketplaceId: string;
   listed: boolean;
+  Partner?: IPartner;
+}
+
+export interface IInventoryList {
+  count: number;
+  rows: IInventory[];
 }

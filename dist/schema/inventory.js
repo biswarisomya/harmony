@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.create = void 0;
+exports.update = exports.create = void 0;
 const yup = require("yup");
 const inventory_1 = require("../constants/inventory");
 exports.create = yup
@@ -39,7 +39,13 @@ exports.create = yup
         .required()
         .min(1)
         .max(100),
-    looseQuantity: yup.number().typeError("Required").integer().min(0).max(100),
+    looseQuantity: yup
+        .number()
+        .typeError("Required and must be a number")
+        .min(1)
+        .max(100)
+        .lessThan(yup.ref("quantityPerPack"))
+        .required("Required"),
     retailPricePerPack: yup
         .number()
         .typeError("Required")
@@ -110,6 +116,32 @@ exports.create = yup
     }),
 })
     .required();
+exports.update = yup
+    .object({
+    name: yup.string().required("Required").min(2),
+    manufacturer: yup.string().when("listed", {
+        is: true,
+        then: yup.string().required("Required").min(3),
+        otherwise: yup.string(),
+    }),
+    description: yup.string().when("listed", {
+        is: true,
+        then: yup.string().required("Required").min(10),
+        otherwise: yup.string(),
+    }),
+    composition: yup.string().when("listed", {
+        is: true,
+        then: yup.string().required("Required").min(10),
+        otherwise: yup.string(),
+    }),
+    partnerId: yup.string().uuid().required("Required"),
+    type: yup.mixed().oneOf(Object.values(inventory_1.Type)).required(),
+    packaging: yup.mixed().oneOf(Object.values(inventory_1.PACKAGING_OPTIONS)).required(),
+    status: yup.mixed().oneOf(Object.values(inventory_1.INVENTORY_STATUS)).required(),
+    listed: yup.boolean().required(),
+})
+    .required();
 exports.default = {
     create: exports.create,
+    update: exports.update,
 };

@@ -1,3 +1,5 @@
+import * as inventoryProductBatch from "./inventoryProductBatch";
+import * as marketplace from "./marketplace";
 declare const _default: {
     inventory: {
         create: import("yup/lib/object").RequiredObjectSchema<{
@@ -11,7 +13,7 @@ declare const _default: {
             packQuantity: import("yup/lib/number").RequiredNumberSchema<number, import("yup/lib/types").AnyObject>;
             totalQuantity: import("yup/lib/number").RequiredNumberSchema<number, import("yup/lib/types").AnyObject>;
             quantityPerPack: import("yup/lib/number").RequiredNumberSchema<number, import("yup/lib/types").AnyObject>;
-            looseQuantity: import("yup").NumberSchema<number, import("yup/lib/types").AnyObject, number>;
+            looseQuantity: import("yup/lib/number").RequiredNumberSchema<number, import("yup/lib/types").AnyObject>;
             retailPricePerPack: import("yup/lib/number").RequiredNumberSchema<number, import("yup/lib/types").AnyObject>;
             sellingPricePerPack: import("yup/lib/number").RequiredNumberSchema<number, import("yup/lib/types").AnyObject>;
             expiryDate: import("yup/lib/date").RequiredDateSchema<Date, import("yup/lib/types").AnyObject>;
@@ -34,7 +36,7 @@ declare const _default: {
             packQuantity: import("yup/lib/number").RequiredNumberSchema<number, import("yup/lib/types").AnyObject>;
             totalQuantity: import("yup/lib/number").RequiredNumberSchema<number, import("yup/lib/types").AnyObject>;
             quantityPerPack: import("yup/lib/number").RequiredNumberSchema<number, import("yup/lib/types").AnyObject>;
-            looseQuantity: import("yup").NumberSchema<number, import("yup/lib/types").AnyObject, number>;
+            looseQuantity: import("yup/lib/number").RequiredNumberSchema<number, import("yup/lib/types").AnyObject>;
             retailPricePerPack: import("yup/lib/number").RequiredNumberSchema<number, import("yup/lib/types").AnyObject>;
             sellingPricePerPack: import("yup/lib/number").RequiredNumberSchema<number, import("yup/lib/types").AnyObject>;
             expiryDate: import("yup/lib/date").RequiredDateSchema<Date, import("yup/lib/types").AnyObject>;
@@ -47,6 +49,29 @@ declare const _default: {
             discount: import("yup").NumberSchema<number, import("yup/lib/types").AnyObject, number>;
             listing: import("yup/lib/mixed").MixedSchema<any, import("yup/lib/types").AnyObject, any>;
         }>>;
+        update: import("yup/lib/object").RequiredObjectSchema<{
+            name: import("yup/lib/string").RequiredStringSchema<string, import("yup/lib/types").AnyObject>;
+            manufacturer: import("yup").StringSchema<string, import("yup/lib/types").AnyObject, string>;
+            description: import("yup").StringSchema<string, import("yup/lib/types").AnyObject, string>;
+            composition: import("yup").StringSchema<string, import("yup/lib/types").AnyObject, string>;
+            partnerId: import("yup/lib/string").RequiredStringSchema<string, import("yup/lib/types").AnyObject>;
+            type: import("yup/lib/mixed").MixedSchema<any, import("yup/lib/types").AnyObject, any>;
+            packaging: import("yup/lib/mixed").MixedSchema<any, import("yup/lib/types").AnyObject, any>;
+            status: import("yup/lib/mixed").MixedSchema<any, import("yup/lib/types").AnyObject, any>;
+            listed: import("yup/lib/boolean").RequiredBooleanSchema<boolean, import("yup/lib/types").AnyObject>;
+        }, import("yup/lib/object").AnyObject, import("yup/lib/object").TypeOfShape<{
+            name: import("yup/lib/string").RequiredStringSchema<string, import("yup/lib/types").AnyObject>;
+            manufacturer: import("yup").StringSchema<string, import("yup/lib/types").AnyObject, string>;
+            description: import("yup").StringSchema<string, import("yup/lib/types").AnyObject, string>;
+            composition: import("yup").StringSchema<string, import("yup/lib/types").AnyObject, string>;
+            partnerId: import("yup/lib/string").RequiredStringSchema<string, import("yup/lib/types").AnyObject>;
+            type: import("yup/lib/mixed").MixedSchema<any, import("yup/lib/types").AnyObject, any>;
+            packaging: import("yup/lib/mixed").MixedSchema<any, import("yup/lib/types").AnyObject, any>;
+            status: import("yup/lib/mixed").MixedSchema<any, import("yup/lib/types").AnyObject, any>;
+            listed: import("yup/lib/boolean").RequiredBooleanSchema<boolean, import("yup/lib/types").AnyObject>;
+        }>>;
     };
+    inventoryProductBatch: typeof inventoryProductBatch;
+    marketplace: typeof marketplace;
 };
 export default _default;
